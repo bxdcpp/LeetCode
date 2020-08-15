@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <stack>
 
 using namespace std;
 bool isValidPalindrome(string s, int left, int right);
@@ -86,6 +87,8 @@ string longestPalindrome_dp(string s) {
 		}
 	return result;
 }
+
+
 int main()
 {
 	int a = 5;
