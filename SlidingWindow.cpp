@@ -51,6 +51,20 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k);
 vector<int> maxSlidingWindow_violence(vector<int>& nums, int k);
 
 
+/*
+ * @lc app=leetcode.cn id=424  lang=cpp
+ *
+ * [424] 替换后的最长重复字符
+ *
+ * @difficulity:Medium
+ *
+ * @tag:two-pointers|string|sliding-windos
+ */
+
+ // @lc code=start
+int characterReplacement(string s, int k);
+
+
 int lengthOfLongestSubstring(string s)
 {
 	int n = s.length();
@@ -117,7 +131,7 @@ string minWindow(string s, string t)
 vector<int> maxSlidingWindow(vector<int>& nums, int k)
 {
 	vector<int> result;
-	deque<int> window;
+	deque<int> window;//双端队列
 	int  right = 0;
 	//int maxNum = INT_MIN;; // 记录结果
 	 
@@ -175,6 +189,30 @@ vector<int> maxSlidingWindow_violence(vector<int>& nums, int k)
 
 	}
 	return window;
+}
+
+int characterReplacement(string s, int k)
+{
+	int left = 0, right = 0;
+	int result = 0;
+	int maxlen = -1;
+	int charIndex[256] = { 0 };
+	while (right < s.length())
+	{
+		charIndex[s[right]]++;
+		//窗口中包含相同字符最大长度
+		maxlen = max(charIndex[s[right]], maxlen);
+		//窗口中的元素超出k次替换后，窗口左指针右移缩小窗口
+		while ((right - left + 1 - maxlen) > k)
+		{
+			charIndex[s[left]]--;
+			left++;
+		}
+		result = max(result, right - left + 1);//替换后的最大长度
+		right++;
+	}
+
+	return result;
 }
 
 void printVec(vector<int> v)
