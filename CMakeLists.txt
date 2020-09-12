@@ -2,9 +2,10 @@ cmake_minimum_required (VERSION 2.8)
 project(LeetCodeExample)
 
 set(single_file_examples
-	04longestPalindromes
+	05longestPalindromes
 	14longestCommonPrefix
 	SlidingWindow
+	BinaryTree
   )
 
 foreach(example ${single_file_examples})
